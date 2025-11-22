@@ -1,675 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmpowerHer - Empowering Women Worldwide</title>
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        nav a.active {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Main Content Area */
-        main {
-            margin-top: 80px;
-            min-height: calc(100vh - 160px);
-        }
-
-        .page {
-            display: none;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: bounceIn 1s ease-out;
-        }
-
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Content Sections */
-        .content-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #f093fb, #f5576c);
-            border-radius: 2px;
-        }
-
-        /* Cards */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            animation: slideInUp 0.5s ease-out;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .card h3 {
-            color: #764ba2;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Success Stories */
-        .story-card {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .story-card h3 {
-            color: #c0392b;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .story-card .title {
-            color: #e74c3c;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        /* Form Styles */
-        form {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
-        }
-
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        /* SDG Section */
-        .sdg-content {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-        }
-
-        .sdg-goals {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .sdg-goal {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 5px solid #e74c3c;
-            transition: all 0.3s ease;
-        }
-
-        .sdg-goal:hover {
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Footer Styles */
-        footer {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            animation: slideUp 0.5s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.2);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: rgba(255,255,255,0.3);
-            transform: scale(1.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EmpowerHer - Empowering Women Worldwide</title>
+<link rel="stylesheet" href="style.css"> </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <div class="logo">EmpowerHer</div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="nav-link active" onclick="showPage('home')">Home</a></li>
-                    <li><a href="#about" class="nav-link" onclick="showPage('about')">About Us</a></li>
-                    <li><a href="#stories" class="nav-link" onclick="showPage('stories')">Success Stories</a></li>
-                    <li><a href="#mentorship" class="nav-link" onclick="showPage('mentorship')">Mentorship</a></li>
-                    <li><a href="#sdg5" class="nav-link" onclick="showPage('sdg5')">SDG 5</a></li>
-                    <li><a href="#contact" class="nav-link" onclick="showPage('contact')">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header>
+<div class="header-content">
+<div class="logo">EmpowerHer</div>
+<nav>
+<ul>
+<li><a href="#home" class="nav-link active" data-page-id="home">Home</a></li>
+<li><a href="#about" class="nav-link" data-page-id="about">About Us</a></li>
+<li><a href="#stories" class="nav-link" data-page-id="stories">Success Stories</a></li>
+<li><a href="#mentorship" class="nav-link" data-page-id="mentorship">Mentorship</a></li>
+<li><a href="#sdg5" class="nav-link" data-page-id="sdg5">SDG 5</a></li>
+<li><a href="#contact" class="nav-link" data-page-id="contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <div class="hero">
-                <h1>Welcome to EmpowerHer</h1>
-                <p>Empowering women globally through education, mentorship, and advocacy for gender equality</p>
-            </div>
-            <div class="content-section">
-                <h2 class="section-title">Our Mission</h2>
-                <div class="cards-container">
-                    <div class="card">
-                        <h3>🎯 Empower</h3>
-                        <p>We empower women with the tools, resources, and support they need to achieve their dreams and break barriers.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🤝 Connect</h3>
-                        <p>Building a global network of women supporting women through mentorship and collaboration.</p>
-                    </div>
-                    <div class="card">
-                        <h3>📈 Elevate</h3>
-                        <p>Helping women entrepreneurs and leaders reach new heights in their personal and professional journeys.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<main>
+<div id="home" class="page active">
+<div class="hero">
+<h1>Welcome to EmpowerHer</h1>
+<p>Empowering women globally through education, mentorship, and advocacy for gender equality</p>
+</div>
+<div class="content-section">
+<h2 class="section-title">Our Mission</h2>
+<div class="cards-container">
+<div class="card">
+<h3>🎯 Empower</h3>
+<p>We empower women with the tools, resources, and support they need to achieve their dreams and break barriers.</p>
+</div>
+<div class="card">
+<h3>🤝 Connect</h3>
+<p>Building a global network of women supporting women through mentorship and collaboration.</p>
+</div>
+<div class="card">
+<h3>📈 Elevate</h3>
+<p>Helping women entrepreneurs and leaders reach new heights in their personal and professional journeys.</p>
+</div>
+</div>
+</div>
+</div>
 
-        <!-- About Us Page -->
-        <div id="about" class="page">
-            <div class="content-section">
-                <h2 class="section-title">About EmpowerHer</h2>
-                <div class="card">
-                    <h3>Our Story</h3>
-                    <p>EmpowerHer was founded with a vision to create a world where every woman has equal opportunities to succeed. We believe that gender equality is not just a women's issue—it's a human rights issue that affects everyone.</p>
-                    <p>Our organization works tirelessly to provide women with access to education, mentorship, funding, and networks that help them achieve their full potential. Through our programs, we've helped thousands of women start businesses, advance their careers, and become leaders in their communities.</p>
-                </div>
-                <div class="cards-container">
-                    <div class="card">
-                        <h3>👁️ Our Vision</h3>
-                        <p>A world where women have equal rights, opportunities, and representation in all sectors of society.</p>
-                    </div>
-                    <div class="card">
-                        <h3>💪 Our Values</h3>
-                        <p>Equality, Empowerment, Inclusion, Respect, and Collaboration guide everything we do.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🌍 Our Impact</h3>
-                        <p>Over 50,000 women empowered across 30 countries through our programs and initiatives.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="about" class="page">
+<div class="content-section">
+<h2 class="section-title">About EmpowerHer</h2>
+<div class="card">
+<h3>Our Story</h3>
+<p>EmpowerHer was founded with a vision to create a world where every woman has equal opportunities to succeed. We believe that gender equality is not just a women's issue—it's a human rights issue that affects everyone.</p>
+<p>Our organization works tirelessly to provide women with access to education, mentorship, funding, and networks that help them achieve their full potential. Through our programs, we've helped thousands of women start businesses, advance their careers, and become leaders in their communities.</p>
+</div>
+<div class="cards-container">
+<div class="card">
+<h3>👁️ Our Vision</h3>
+<p>A world where women have equal rights, opportunities, and representation in all sectors of society.</p>
+</div>
+<div class="card">
+<h3>💪 Our Values</h3>
+<p>Equality, Empowerment, Inclusion, Respect, and Collaboration guide everything we do.</p>
+</div>
+<div class="card">
+<h3>🌍 Our Impact</h3>
+<p>Over 50,000 women empowered across 30 countries through our programs and initiatives.</p>
+</div>
+</div>
+</div>
+</div>
 
-        <!-- Success Stories Page -->
-        <div id="stories" class="page">
-            <div class="content-section">
-                <h2 class="section-title">Success Stories of Women Entrepreneurs</h2>
-                <div class="story-card">
-                    <h3>Priya Sharma</h3>
-                    <p class="title">Founder & CEO, TechInnovate Solutions</p>
-                    <p>Priya started her tech company with just $5,000 and a dream. Today, TechInnovate Solutions employs over 200 people and has secured $10 million in funding. "EmpowerHer's mentorship program connected me with industry leaders who believed in my vision and guided me through the challenges of building a startup," says Priya.</p>
-                </div>
-                <div class="story-card">
-                    <h3>Maria Rodriguez</h3>
-                    <p class="title">Founder, Green Earth Organics</p>
-                    <p>From a small organic farm to a nationwide distribution network, Maria's journey is inspiring. "I learned business strategies, financial management, and leadership skills through EmpowerHer. They didn't just teach me—they believed in me when no one else did," Maria shares.</p>
-                </div>
-                <div class="story-card">
-                    <h3>Aisha Mohammed</h3>
-                    <p class="title">CEO, Fashion Forward Africa</p>
-                    <p>Aisha transformed traditional African textiles into a global fashion brand. Her company now exports to 15 countries and provides employment to over 500 women artisans. "EmpowerHer gave me access to international markets and taught me how to scale my business while staying true to my cultural roots."</p>
-                </div>
-            </div>
-        </div>
+<div id="stories" class="page">
+<div class="content-section">
+<h2 class="section-title">Success Stories of Women Entrepreneurs</h2>
+<div class="story-card">
+<h3>Priya Sharma</h3>
+<p class="title">Founder & CEO, TechInnovate Solutions</p>
+<p>Priya started her tech company with just $5,000 and a dream. Today, TechInnovate Solutions employs over 200 people and has secured $10 million in funding. "EmpowerHer's mentorship program connected me with industry leaders who believed in my vision and guided me through the challenges of building a startup," says Priya.</p>
+</div>
+<div class="story-card">
+<h3>Maria Rodriguez</h3>
+<p class="title">Founder, Green Earth Organics</p>
+<p>From a small organic farm to a nationwide distribution network, Maria's journey is inspiring. "I learned business strategies, financial management, and leadership skills through EmpowerHer. They didn't just teach me—they believed in me when no one else did," Maria shares.</p>
+</div>
+<div class="story-card">
+<h3>Aisha Mohammed</h3>
+<p class="title">CEO, Fashion Forward Africa</p>
+<p>Aisha transformed traditional African textiles into a global fashion brand. Her company now exports to 15 countries and provides employment to over 500 women artisans. "EmpowerHer gave me access to international markets and taught me how to scale my business while staying true to my cultural roots."</p>
+</div>
+</div>
+</div>
 
-        <!-- Mentorship Program Page -->
-        <div id="mentorship" class="page">
-            <div class="content-section">
-                <h2 class="section-title">Mentorship Program</h2>
-                <div class="card">
-                    <h3>Join Our Mentorship Network</h3>
-                    <p>Our mentorship program connects aspiring women entrepreneurs and professionals with experienced mentors who provide guidance, support, and inspiration. Whether you're starting a business, advancing your career, or seeking personal development, we have the right mentor for you.</p>
-                </div>
-                <div class="cards-container">
-                    <div class="card">
-                        <h3>👩‍🏫 One-on-One Mentoring</h3>
-                        <p>Get personalized guidance from industry experts who understand your challenges and can help you overcome them.</p>
-                    </div>
-                    <div class="card">
-                        <h3>📚 Workshops & Training</h3>
-                        <p>Access exclusive workshops on business, leadership, finance, and personal development.</p>
-                    </div>
-                    <div class="card">
-                        <h3>🌐 Networking Events</h3>
-                        <p>Connect with like-minded women, share experiences, and build lasting professional relationships.</p>
-                    </div>
-                </div>
-                <form onsubmit="submitMentorshipForm(event)">
-                    <h3 style="text-align: center; color: #667eea; margin-bottom: 1.5rem;">Apply for Mentorship</h3>
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" required placeholder="Enter your full name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label>Area of Interest</label>
-                        <select required>
-                            <option value="">Select an area</option>
-                            <option value="business">Business & Entrepreneurship</option>
-                            <option value="tech">Technology</option>
-                            <option value="leadership">Leadership</option>
-                            <option value="finance">Finance</option>
-                            <option value="marketing">Marketing</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Tell us about your goals</label>
-                        <textarea rows="4" required placeholder="What do you hope to achieve through mentorship?"></textarea>
-                    </div>
-                    <button type="submit">Submit Application</button>
-                </form>
-            </div>
-        </div>
+<div id="mentorship" class="page">
+<div class="content-section">
+<h2 class="section-title">Mentorship Program</h2>
+<div class="card">
+<h3>Join Our Mentorship Network</h3>
+<p>Our mentorship program connects aspiring women entrepreneurs and professionals with experienced mentors who provide guidance, support, and inspiration. Whether you're starting a business, advancing your career, or seeking personal development, we have the right mentor for you.</p>
+</div>
+<div class="cards-container">
+<div class="card">
+<h3>👩‍🏫 One-on-One Mentoring</h3>
+<p>Get personalized guidance from industry experts who understand your challenges and can help you overcome them.</p>
+</div>
+<div class="card">
+<h3>📚 Workshops & Training</h3>
+<p>Access exclusive workshops on business, leadership, finance, and personal development.</p>
+</div>
+<div class="card">
+<h3>🌐 Networking Events</h3>
+<p>Connect with like-minded women, share experiences, and build lasting professional relationships.</p>
+</div>
+</div>
+<form id="mentorshipForm">
+<h3 style="text-align: center; color: #667eea; margin-bottom: 1.5rem;">Apply for Mentorship</h3>
+<div class="form-group">
+<label for="m-name">Full Name</label>
+<input type="text" id="m-name" name="m-name" required placeholder="Enter your full name">
+</div>
+<div class="form-group">
+<label for="m-email">Email</label>
+<input type="email" id="m-email" name="m-email" required placeholder="Enter your email">
+</div>
+<div class="form-group">
+<label for="m-area">Area of Interest</label>
+<select id="m-area" name="m-area" required>
+<option value="">Select an area</option>
+<option value="business">Business & Entrepreneurship</option>
+<option value="tech">Technology</option>
+<option value="leadership">Leadership</option>
+<option value="finance">Finance</option>
+<option value="marketing">Marketing</option>
+</select>
+</div>
+<div class="form-group">
+<label for="m-goals">Tell us about your goals</label>
+<textarea rows="4" id="m-goals" name="m-goals" required placeholder="What do you hope to achieve through mentorship?"></textarea>
+</div>
+<button type="submit">Submit Application</button>
+</form>
+</div>
+</div>
 
-        <!-- SDG 5 Page -->
-        <div id="sdg5" class="page">
-            <div class="content-section">
-                <h2 class="section-title">SDG 5: Gender Equality</h2>
-                <div class="sdg-content">
-                    <h3 style="color: #c0392b; font-size: 1.8rem; margin-bottom: 1rem;">The Importance of Gender Equality</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                        Sustainable Development Goal 5 aims to achieve gender equality and empower all women and girls. Gender equality is not only a fundamental human right but also a necessary foundation for a peaceful, prosperous, and sustainable world.
-                    </p>
-                    <div class="sdg-goals">
-                        <div class="sdg-goal">
-                            <h4>🚫 End Discrimination</h4>
-                            <p>Eliminate all forms of discrimination against women and girls everywhere.</p>
-                        </div>
-                        <div class="sdg-goal">
-                            <h4>⚖️ Equal Rights</h4>
-                            <p>Ensure equal opportunities for leadership and decision-making at all levels.</p>
-                        </div>
-                        <div class="sdg-goal">
-                            <h4>💼 Economic Participation</h4>
-                            <p>Promote equal access to economic resources, property rights, and financial services.</p>
-                        </div>
-                        <div class="sdg-goal">
-                            <h4>📱 Technology Access</h4>
-                            <p>Enhance the use of technology to promote women's empowerment and inclusion.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="margin-top: 2rem;">
-                    <h3>Why Gender Equality Matters</h3>
-                    <p><strong>Economic Growth:</strong> Countries with greater gender equality experience faster economic growth and higher productivity.</p>
-                    <p><strong>Poverty Reduction:</strong> Empowering women is one of the most effective ways to reduce poverty and improve community wellbeing.</p>
-                    <p><strong>Peace & Security:</strong> Gender equality contributes to more peaceful and stable societies.</p>
-                    <p><strong>Innovation:</strong> Diverse perspectives lead to better problem-solving and innovation in all sectors.</p>
-                </div>
-            </div>
-        </div>
+<div id="sdg5" class="page">
+<div class="content-section">
+<h2 class="section-title">SDG 5: Gender Equality</h2>
+<div class="sdg-content">
+<h3 style="color: #c0392b; font-size: 1.8rem; margin-bottom: 1rem;">The Importance of Gender Equality</h3>
+<p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+Sustainable Development Goal 5 aims to achieve gender equality and empower all women and girls. Gender equality is not only a fundamental human right but also a necessary foundation for a peaceful, prosperous, and sustainable world.
+</p>
+<div class="sdg-goals">
+<div class="sdg-goal">
+<h4>🚫 End Discrimination</h4>
+<p>Eliminate all forms of discrimination against women and girls everywhere.</p>
+</div>
+<div class="sdg-goal">
+<h4>⚖️ Equal Rights</h4>
+<p>Ensure equal opportunities for leadership and decision-making at all levels.</p>
+</div>
+<div class="sdg-goal">
+<h4>💼 Economic Participation</h4>
+<p>Promote equal access to economic resources, property rights, and financial services.</p>
+</div>
+<div class="sdg-goal">
+<h4>📱 Technology Access</h4>
+<p>Enhance the use of technology to promote women's empowerment and inclusion.</p>
+</div>
+</div>
+</div>
+<div class="card" style="margin-top: 2rem;">
+<h3>Why Gender Equality Matters</h3>
+<p><strong>Economic Growth:</strong> Countries with greater gender equality experience faster economic growth and higher productivity.</p>
+<p><strong>Poverty Reduction:</strong> Empowering women is one of the most effective ways to reduce poverty and improve community wellbeing.</p>
+<p><strong>Peace & Security:</strong> Gender equality contributes to more peaceful and stable societies.</p>
+<p><strong>Innovation:</strong> Diverse perspectives lead to better problem-solving and innovation in all sectors.</p>
+</div>
+</div>
+</div>
 
-        <!-- Contact Page -->
-        <div id="contact" class="page">
-            <div class="content-section">
-                <h2 class="section-title">Contact Us</h2>
-                <div class="card">
-                    <h3>Get in Touch</h3>
-                    <p>We'd love to hear from you! Whether you have questions about our programs, want to get involved, or need support, our team is here to help.</p>
-                </div>
-                <form onsubmit="submitContactForm(event)">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" required placeholder="Your name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" required placeholder="Your email">
-                    </div>
-                    <div class="form-group">
-                        <label>Subject</label>
-                        <input type="text" required placeholder="Subject of your message">
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="5" required placeholder="Your message"></textarea>
-                    </div>
-                    <button type="submit">Send Message</button>
-                </form>
-                <div class="cards-container" style="margin-top: 2rem;">
-                    <div class="card">
-                        <h3>📧 Email</h3>
-                        <p>info@empowerher.org</p>
-                    </div>
-                    <div class="card">
-                        <h3>📞 Phone</h3>
-                        <p>+1 (555) 123-4567</p>
-                    </div>
-                    <div class="card">
-                        <h3>📍 Address</h3>
-                        <p>123 Equality Street, Empowerment City, EC 12345</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+<div id="contact" class="page">
+<div class="content-section">
+<h2 class="section-title">Contact Us</h2>
+<div class="card">
+<h3>Get in Touch</h3>
+<p>We'd love to hear from you! Whether you have questions about our programs, want to get involved, or need support, our team is here to help.</p>
+</div>
+<form id="contactForm">
+<div class="form-group">
+<label for="c-name">Name</label>
+<input type="text" id="c-name" name="c-name" required placeholder="Your name">
+</div>
+<div class="form-group">
+<label for="c-email">Email</label>
+<input type="email" id="c-email" name="c-email" required placeholder="Your email">
+</div>
+<div class="form-group">
+<label for="c-subject">Subject</label>
+<input type="text" id="c-subject" name="c-subject" required placeholder="Subject of your message">
+</div>
+<div class="form-group">
+<label for="c-message">Message</label>
+<textarea rows="5" id="c-message" name="c-message" required placeholder="Your message"></textarea>
+</div>
+<button type="submit">Send Message</button>
+</form>
+<div class="cards-container" style="margin-top: 2rem;">
+<div class="card">
+<h3>📧 Email</h3>
+<p>info@empowerher.org</p>
+</div>
+<div class="card">
+<h3>📞 Phone</h3>
+<p>+1 (555) 123-4567</p>
+</div>
+<div class="card">
+<h3>📍 Address</h3>
+<p>123 Equality Street, Empowerment City, EC 12345</p>
+</div>
+</div>
+</div>
+</div>
+</main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <h3>EmpowerHer</h3>
-            <p>Empowering Women. Transforming Communities. Building a Better World.</p>
-            <div class="social-links">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
-            </div>
-            <p style="margin-top: 1rem;">&copy; 2025 EmpowerHer. All rights reserved.</p>
-        </div>
-    </footer>
 
-    <script>
-        // Function to show different pages
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
+<footer>
+<div class="footer-content">
+<h3>EmpowerHer</h3>
+<p>Empowering Women. Transforming Communities. Building a Better World.</p>
+<div class="social-links">
+<a href="#">Facebook</a>
+<a href="#">Twitter</a>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+</div>
+<p style="margin-top: 1rem;">&copy; 2025 EmpowerHer. All rights reserved.</p>
+</div>
+</footer>
 
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-
-            // Update active navigation link
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Function to handle mentorship form submission
-        function submitMentorshipForm(event) {
-            event.preventDefault();
-            alert('Thank you for applying to our mentorship program! We will review your application and get back to you within 5 business days.');
-            event.target.reset();
-        }
-
-        // Function to handle contact form submission
-        function submitContactForm(event) {
-            event.preventDefault();
-            alert('Thank you for contacting us! We have received your message and will respond within 24 hours.');
-            event.target.reset();
-        }
-
-        // Add animation delay to cards
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-    </script>
-</body>
+<script src="script.js"></script> </body>
 </html>
